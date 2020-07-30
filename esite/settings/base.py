@@ -9,6 +9,7 @@ https://docs.djangoproject.com/en/stable/ref/settings/
 """
 
 import os
+from datetime import timedelta
 
 
 #> Root Paths
@@ -24,6 +25,7 @@ INSTALLED_APPS = [
     # Our own pages
     "esite.home",
     # Our own apps
+    "esite.bifrost",
     "esite.core",
     "esite.user",
     "esite.colorfield",
@@ -63,6 +65,9 @@ INSTALLED_APPS = [
     "captcha",
     "generic_chooser",
     "wagtailcaptcha",
+    "graphene_django",
+    "graphql_jwt.refresh_token.apps.RefreshTokenConfig",
+    "channels",
     "wagtailfontawesome",
     "pattern_library",
 ]
@@ -142,6 +147,27 @@ DATABASES = {
     }
 }
 
+#> Graphene Configuration
+GRAPHENE = {
+    "SCHEMA": "esite.bifrost.schema.schema",
+    "MIDDLEWARE": ["graphql_jwt.middleware.JSONWebTokenMiddleware",],
+}
+
+GRAPHQL_JWT = {
+    "JWT_ALLOW_ARGUMENT": True,
+    "JWT_VERIFY_EXPIRATION": True,
+    "JWT_LONG_RUNNING_REFRESH_TOKEN": True,
+    "JWT_EXPIRATION_DELTA": timedelta(minutes=5),
+    "JWT_REFRESH_EXPIRATION_DELTA": timedelta(days=7),
+}
+
+BIFROST_APPS = {
+    "home": "",
+    "utils": "",
+    "documents": "",
+    "images": "",
+}
+
 #> Password Validation
 # The list of validators that are used to check the strength of passwords, see
 # https://docs.djangoproject.com/en/stable/ref/settings/#auth-password-validators
@@ -154,6 +180,12 @@ AUTH_PASSWORD_VALIDATORS = [
 
 AUTH_USER_MODEL = "user.User"
 # AUTH_PROFILE_MODULE = "avatar.Avatar"
+
+#> Authentication Backend
+AUTHENTICATION_BACKENDS = [
+    "graphql_jwt.backends.JSONWebTokenBackend",
+    "django.contrib.auth.backends.ModelBackend",
+]
 
 #> Internationalization
 # https://docs.djangoproject.com/en/stable/topics/i18n/
