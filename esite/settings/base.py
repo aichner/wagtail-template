@@ -268,4 +268,4 @@ PATTERN_LIBRARY_TEMPLATE_DIR = "templates"
 SILENCED_SYSTEM_CHECKS = ["captcha.recaptcha_test_key_error"]
 
 # SPDX-License-Identifier: (EUPL-1.2)
-# Copyright © 2019 Werbeagentur Christian Aichner
+# Copyright © 2019-2020 Werbeagentur Christian Aichner
