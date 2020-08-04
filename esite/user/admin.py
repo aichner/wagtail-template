@@ -4,8 +4,6 @@ from wagtail.contrib.modeladmin.options import (
     modeladmin_register,
 )
 
-from .models import User
-
 # Register your user related models here.
 
 
