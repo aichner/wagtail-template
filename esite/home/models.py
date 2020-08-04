@@ -36,6 +36,7 @@ from esite.bifrost.models import (
 )
 from esite.bifrost.helpers import register_streamfield_block
 
+
 # > Sections
 @register_streamfield_block
 class _S_SmallBlock(blocks.StructBlock):
@@ -81,7 +82,6 @@ class _S_TallBlock(blocks.StructBlock):
     choiceblock = blocks.ChoiceBlock(
         choices=[("apples", "Apple"), ("bananas", "Bananas"),]
     )
-    # pagechooserblock = blocks.PageChooserBlock()
 
     graphql_fields = [
         GraphQLString("timeblock"),
@@ -90,7 +90,6 @@ class _S_TallBlock(blocks.StructBlock):
         GraphQLString("rawhtmlblock"),
         GraphQLString("blockquoteblock"),
         GraphQLString("choiceblock"),
-        # GraphQLForeignKey("pagechooserblock", content_type="page"),
     ]
 
 
@@ -116,10 +115,7 @@ class HomePage(Page):
     # Only allow creating HomePages at the root level
     parent_page_types = ["wagtailcore.Page"]
 
-    # autofield = models.AutoField()
-    # bigautofield = models.BigAutoField()
     bigintegerfield = models.BigIntegerField(blank=False, null=True)
-    # binaryfield = models.BinaryField()
     booleanfield = models.BooleanField(blank=False, null=True)
     charfield = models.CharField(max_length=22, blank=False, null=True)
     datefield = models.DateField(blank=False, null=True)
@@ -129,8 +125,6 @@ class HomePage(Page):
     )
     durationfield = models.DurationField(blank=False, null=True)
     emailfield = models.EmailField(blank=False, null=True)
-    # filefield = models.FileField(blank=False, null=True)
-    # filepathfield = models.FilePathField(blank=False, null=True)
     floatfield = models.FloatField(blank=False, null=True)
     imagefield = models.ForeignKey(
         settings.WAGTAILIMAGES_IMAGE_MODEL,
@@ -163,8 +157,6 @@ class HomePage(Page):
     )
 
     graphql_fields = [
-        # GraphQLInt("autofield"),
-        # GraphQLInt("bigautofield"),
         GraphQLInt("bigintegerfield"),
         GraphQLInt("binaryfield"),
         GraphQLBoolean("booleanfield"),
@@ -174,10 +166,8 @@ class HomePage(Page):
         GraphQLFloat("decimalfield"),
         GraphQLString("durationfield"),
         GraphQLString("emailfield"),
-        # GraphQLGenericScala("filefield"),
         GraphQLString("filepathfield"),
         GraphQLFloat("floatfield"),
-        # GraphQLGenericScala("imagefield"),
         GraphQLInt("integerfield"),
         GraphQLString("genericipaddressfield"),
         GraphQLBoolean("nullbooleanfield"),
@@ -201,8 +191,6 @@ class HomePage(Page):
         FieldPanel("decimalfield"),
         FieldPanel("durationfield"),
         FieldPanel("emailfield"),
-        # FieldPanel('filefield'),
-        # FieldPanel('filepathfield'),
         FieldPanel("floatfield"),
         ImageChooserPanel("imagefield"),
         FieldPanel("integerfield"),
@@ -223,4 +211,4 @@ class HomePage(Page):
 
 
 # SPDX-License-Identifier: (EUPL-1.2)
-# Copyright © 2019 Werbeagentur Christian Aichner
+# Copyright © 2019-2020 Werbeagentur Christian Aichner
