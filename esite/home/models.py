@@ -31,8 +31,6 @@ from esite.bifrost.models import (
     GraphQLSnippet,
     GraphQLEmbed,
     GraphQLStreamfield,
-    GraphQLForeignKey,
-    GraphQLPage,
 )
 from esite.bifrost.helpers import register_streamfield_block
 
